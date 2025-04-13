@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaproszenie Ślubne</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background-image: url('tlo.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #4b2e1e;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .content-scrollable {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      z-index: 9999;
+    }
+
+    .progress-ring {
+      width: 80px;
+      height: 80px;
+      border: 8px solid #ddd;
+      border-top: 8px solid #a22;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .main-content {
+      display: none;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .main-names {
+      font-size: 2rem;
+      margin-top: 10px;
+    }
+
+    .countdown-label {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    .countdown {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    #odbiorca {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .mapa {
+      margin: 10px 0;
+    }
+
+    .kontakt a {
+      color: #a22;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .fixed-bottom {
+      position: sticky;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      z-index: 100;
+      background-color: rgba(255,255,255,0.7);
+      backdrop-filter: blur(5px);
+      padding: 10px 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      .main-names {
+        font-size: 1.6rem;
+      }
+      .countdown {
+        font-size: 1.2rem;
+      }
+      #odbiorca {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div style="font-size: 2.2rem; margin-bottom: 20px; text-align: center;">Hej wesele!</div>
+    <div class="progress-ring"></div>
+    <div style="font-size: 1rem; margin-top: 20px; text-align: center;">Ładowanie zaproszenia...</div>
+  </div>
+
+  <div class="wrapper">
+    <div class="content-scrollable">
+      <div class="main-content" id="content">
+        <p class="main-names"><strong>Gabriela Kwasiborska<br>i<br>Marek Piwiński</strong></p>
+        <p>z radością pragną zaprosić</p>
+        <p>SZ. P. <span id="odbiorca">Gościu</span></p>
+        <p>na uroczystość zawarcia związku małżeńskiego,<br>
+        która odbędzie się <strong>w Sobotę 21 czerwca 2025 o godz. 16:30</strong></p>
+        <p>w parafii pw. św. Stanisława Biskupa i Męczennika<br>
+          na ul. Targowej 2 w Drobinie.</p>
+        <div class="mapa">
+          <a href="https://goo.gl/maps/1ZZq2kcXtLzSoF7r9" target="_blank">📍 Zobacz miejsce ceremonii</a>
+        </div>
+        <p>Po uroczystości zapraszamy serdecznie na przyjęcie weselne,<br>
+          które odbędzie się w "Stodole Goślice 15" w Goślicach.</p>
+        <div class="mapa">
+          <a href="https://goo.gl/maps/QW7yaQrcJdfZUGdi7" target="_blank">📍 Zobacz miejsce przyjęcia</a>
+        </div>
+        <p><strong>Prosimy o potwierdzenie przybycia do dnia: 01.06.2025 r.</strong></p>
+        <div class="kontakt" style="text-align: center;">
+  <p>Gabriela – <a href="tel:508752652">508 752 652</a></p>
+  <p>Marek – <a href="tel:694221260">694 221 260</a></p>
+  <p style="font-size: 0.9rem; margin-top: 5px;">Kliknij w numer, aby zadzwonić 📞</p>
+</div>
+        <div class="fixed-bottom" id="footer">
+          <p class="countdown-label">Do wesela pozostało:</p>
+          <div class="countdown" id="countdown"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio autoplay loop>
+    <source src="muzyka.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+  </audio>
+
+  <script>
+    const targetDate = new Date("2025-06-21T16:30:00").getTime();
+    function updateCountdown(element) {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      element.innerHTML = `<strong>${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek</strong>`;
+    }
+
+    const countdown = document.getElementById("countdown");
+    setInterval(() => {
+      updateCountdown(countdown);
+    }, 1000);
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      }, 2000);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const imie = params.get("dla");
+    if (imie) {
+      document.getElementById("odbiorca").textContent = imie;
+    }
+  </script>
+</body>
+</html>
