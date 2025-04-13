@@ -194,6 +194,9 @@
       <div class="progress-bar"></div>
     </div>
     <div style="font-size: 1rem; margin-top: 20px; text-align: center;">Ładowanie zaproszenia...</div>
+	<button id="enterBtn" style="margin-top: 20px; font-size: 1.2rem; padding: 	10px 20px; border: none; background-color: #a22; color: white; border-radius: 10px; cursor: pointer;">
+	  Przejdź dalej
+	</button>
   </div>
 
   <div class="wrapper">
@@ -259,10 +262,13 @@
     <div class="countdown" id="countdown"></div>
   </div>
 
-  <audio autoplay loop>
-    <source src="muzyka.mp3" type="audio/mpeg">
-    Twoja przeglądarka nie obsługuje odtwarzacza audio.
-  </audio>
+  <audio id="player" loop>
+	  <source src="muzyka.mp3" type="audio/mpeg">
+	</audio>
+
+	<button id="toggleMusicBtn" style="position:fixed;bottom:10px;right:10px;z-index:999;">
+	  ⏸️ Zatrzymaj muzykę
+	</button>
 
   <script>
     const targetDate = new Date("2025-06-21T16:30:00").getTime();
@@ -282,13 +288,41 @@
     }, 1000);
 
     window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("content").style.display = "block";
-      }, 2000);
-    });
+	  const btn = document.getElementById("enterBtn");
+	  const loader = document.getElementById("loader");
+	  const content = document.getElementById("content");
+	  const audio = document.getElementById("player");
+
+	  // Ukryj przycisk na początku
+	  btn.style.display = "none";
+
+	  // Pokaż przycisk po 2 sekundach
+	  setTimeout(() => {
+		btn.style.display = "inline-block";
+	  }, 2000);
+
+	  btn.addEventListener("click", () => {
+		loader.style.display = "none";
+		content.style.display = "block";
+		audio.play();
+	  });
+	});
 
     const params = new URLSearchParams(window.location.search);
+	
+	const toggleBtn = document.getElementById("toggleMusicBtn");
+	const audioPlayer = document.getElementById("player");
+
+	toggleBtn.addEventListener("click", () => {
+	  if (audioPlayer.paused) {
+		audioPlayer.play();
+		toggleBtn.textContent = "⏸️ Zatrzymaj muzykę";
+	  } else {
+		audioPlayer.pause();
+		toggleBtn.textContent = "▶️ Włącz muzykę";
+	  }
+	});
+	
     const imie = params.get("dla");
     if (imie) {
       document.getElementById("odbiorca").textContent = imie;
