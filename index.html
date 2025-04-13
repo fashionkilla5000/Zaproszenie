@@ -21,7 +21,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      padding-bottom: 60px; /* zostawia miejsce na navbar */
+      padding-top: 60px; /* zostawia miejsce na navbar */
     }
 
     .wrapper {
@@ -153,21 +153,21 @@
     }
 
     .fixed-bottom {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-      z-index: 1000;
-      background-image: url('tło content.png');
-      background-size: cover;
-      background-position: center;
-      backdrop-filter: blur(5px);
-      padding: 10px;
-      border-radius: 0;
-      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-      font-size: 0.9rem;
-    }
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  text-align: center;
+	  z-index: 1000;
+	  background-image: url('tło content.png');
+	  background-size: cover;
+	  background-position: center;
+	  backdrop-filter: blur(5px);
+	  padding: 10px;
+	  border-radius: 0 0 20px 20px;
+	  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	  font-size: 0.9rem;
+	}
 
     @media screen and (max-width: 600px) {
       .main-names {
