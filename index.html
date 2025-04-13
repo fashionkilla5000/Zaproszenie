@@ -4,34 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zaproszenie Ślubne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
-      padding: 0;
-      font-family: 'Georgia', serif;
-      background-image: url('tlo.jpg');
+	  padding: 0;
+	  font-family: 'Playfair Display', serif;
+	  background-color: #fff;
+	  color: #4b2e1e;
+	  height: 100%;
+	  overflow: hidden; /* 💥 BLOKUJE SCROLL NA CAŁEJ STRONIE */
+    }
+
+    body {
+      background-image: url('tło%20(2).jpg');
       background-size: cover;
       background-position: center;
-      color: #4b2e1e;
-      height: 100%;
-      overflow: hidden;
+      background-repeat: no-repeat;
+      padding-bottom: 60px; /* zostawia miejsce na navbar */
     }
 
     .wrapper {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
       width: 100vw;
+      justify-content: center;
+      align-items: center;
     }
 
     .content-scrollable {
       flex: 1;
-      overflow-y: auto;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
       padding: 20px;
       box-sizing: border-box;
+      width: 100%;
+      overflow-y: auto;
     }
 
     .loader {
@@ -84,10 +94,14 @@
       padding: 20px;
       text-align: center;
       width: 100%;
-      max-width: 600px;
-      background-color: rgba(255, 255, 255, 0.95);
+      max-width: 480px;
+      max-height: 600px;
+      overflow-y: auto;
+      background-image: url('tło content.png');
+      background-size: cover;
+      background-position: center;
       border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      box-shadow: none;
     }
 
     @keyframes fadeInUp {
@@ -107,15 +121,20 @@
     }
 
     .countdown-label {
-      font-size: 1.4rem;
+      font-size: 1rem;
       font-weight: bold;
       margin-top: 10px;
       margin-bottom: 0;
     }
 
     .countdown {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-bottom: 10px;
+      min-width: 280px;
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
 
     #odbiorca {
@@ -134,14 +153,20 @@
     }
 
     .fixed-bottom {
-      position: sticky;
+      position: fixed;
       bottom: 0;
+      left: 0;
+      right: 0;
       text-align: center;
-      width: 100%;
-      z-index: 100;
-      background-color: rgba(255,255,255,0.7);
+      z-index: 1000;
+      background-image: url('tło content.png');
+      background-size: cover;
+      background-position: center;
       backdrop-filter: blur(5px);
-      padding: 10px 0;
+      padding: 10px;
+      border-radius: 0;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+      font-size: 0.9rem;
     }
 
     @media screen and (max-width: 600px) {
@@ -192,16 +217,47 @@
         </div>
         <p><strong>Prosimy o potwierdzenie przybycia do dnia: 01.06.2025 r.</strong></p>
         <div class="kontakt" style="text-align: center;">
-  <p>Gabriela – <a href="tel:508752652">508 752 652</a></p>
-  <p>Marek – <a href="tel:694221260">694 221 260</a></p>
-  <p style="font-size: 0.9rem; margin-top: 5px;">Kliknij w numer, aby zadzwonić 📞</p>
-</div>
-        <div class="fixed-bottom" id="footer">
-          <p class="countdown-label">Do wesela pozostało:</p>
-          <div class="countdown" id="countdown"></div>
+          <p>Gabriela – <a href="tel:508752652">508 752 652</a></p>
+          <p>Marek – <a href="tel:694221260">694 221 260</a></p>
+          <p style="font-size: 0.9rem; margin-top: 5px;">Kliknij w numer, aby zadzwonić 📞</p>
         </div>
+		<div class="dodatkowe-info" style="margin-top: 30px; padding: 20px;">
+		  <h3 style="text-align: center; margin-bottom: 20px;">Dodatkowe informacje</h3>
+		  <p style="white-space: pre-line; text-align: center; line-height: 1.6;">
+			Drogie Panie nasze kochane,  
+			Wesele w stodole zapowiedziane.  
+			Aby nie skręcić swojej nóżeczki,  
+			Odstawcie lepiej wysokie szpileczki.  
+			  
+			Drodzy Panowie równie wspaniali,  
+			Jedźcie autem bezpiecznie z oddali.  
+			Gdy je już pięknie zaparkujecie,  
+			Idźcie w tańcu towarzyszyć kobiecie.  
+			  
+			Posłuchajcie teraz Państwo nasi mili,  
+			Prosimy, by nie brać dzieci w tej chwili.  
+			  
+			Zabawa będzie osiemnaście plus,  
+			By wszyscy goście wrzucili na luz.  
+			  
+			Zwracamy się do Was z prośbą ostatnią:  
+			Chcemy mieć w banku kwotę dodatnią.  
+			Przygarniemy z chęcią pełne koperty,  
+			Wtedy nasz los będzie uśmiechnięty.  
+			  
+			Z racji tego grzecznie prosimy:  
+			Alkoholu i kwiatów nie przynosimy.  
+			Liczymy Kochani na Wasze przybycie,  
+			Będzie zabawa, o jakiej marzycie!
+		  </p>
+		</div>
       </div>
     </div>
+  </div>
+
+  <div class="fixed-bottom" id="footer">
+    <p class="countdown-label">Do wesela pozostało:</p>
+    <div class="countdown" id="countdown"></div>
   </div>
 
   <audio autoplay loop>
@@ -218,7 +274,7 @@
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      element.innerHTML = `<strong>${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek</strong>`;
+      element.innerHTML = `<strong>${days} dni ${hours} godz. ${minutes} min ${seconds} sek</strong>`;
     }
 
     const countdown = document.getElementById("countdown");
