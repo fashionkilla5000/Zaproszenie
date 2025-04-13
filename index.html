@@ -50,19 +50,31 @@
       z-index: 9999;
     }
 
-    .progress-ring {
-      width: 80px;
-      height: 80px;
-      border: 8px solid #ddd;
-      border-top: 8px solid #a22;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-top: 20px;
+    .loader img {
+      width: 320px;
+      height: auto;
+      border-radius: 20px;
+      margin-bottom: 20px;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .progress-bar-container {
+      width: 80%;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background-color: #a22;
+      animation: loadBar 2s linear forwards;
+    }
+
+    @keyframes loadBar {
+      from { width: 0; }
+      to { width: 100%; }
     }
 
     .main-content {
@@ -142,13 +154,21 @@
       #odbiorca {
         font-size: 1.3rem;
       }
+
+      .loader img {
+        width: 90%;
+        max-width: 320px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="loader" id="loader">
-    <div style="font-size: 2.2rem; margin-bottom: 20px; text-align: center;">Hej wesele!</div>
-    <div class="progress-ring"></div>
+    <img src="Gabrysia_i_Marek.jpg" alt="Gabrysia i Marek">
+    <div style="font-size: 2.2rem; margin-bottom: 10px; text-align: center;">Hej wesele!</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
     <div style="font-size: 1rem; margin-top: 20px; text-align: center;">Ładowanie zaproszenia...</div>
   </div>
 
